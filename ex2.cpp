@@ -91,9 +91,7 @@ int create_list(Stockage* ListeObjet2D) {
 		cin >> size;
 	}
 
-	for (int i = 0; i < size; i++) {
-		append(ListeObjet2D);
-	}
+	for (int i = 0; i < size; i++) append(ListeObjet2D);
 
 	cout << endl << "Liste des objets : " << endl;
 	ListeObjet2D->afficheInfo();
@@ -125,28 +123,21 @@ int main() {
 		cin >> command;
 		cout << endl;
 
-		if (command == "help") {
-			help();
-		}
-		else if (command == "create") {
-			create_list(&ListeObjet2D);
-		}
-		else if (command == "append") {
-			append(&ListeObjet2D);
-		}
+		if (command == "help") help(); 
+		else if (command == "create") create_list(&ListeObjet2D);
+		else if (command == "append") append(&ListeObjet2D);
+
 		else if (command == "put") {
 			ListeObjet2D.afficheInfo();
-			if (put(&ListeObjet2D) > 0) {
-				cout << endl << " X | Erreur : index invalide" << endl;
-			}
-			else {
-				cout << endl << " O | Objet ajoute !" << endl;
-			}
+			if (put(&ListeObjet2D) > 0) cout << endl << " X | Erreur : index invalide" << endl;
+			else cout << endl << " O | Objet ajoute !" << endl;
 		}
+
 		else if (command == "listeinfo") {
 			ListeObjet2D.afficheListestats();
 			ListeObjet2D.afficheInfo();
 		}
+
 		else if (command == "remove") {
 			ListeObjet2D.afficheInfo();
 			int index = -1;
@@ -154,25 +145,20 @@ int main() {
 				cout << endl << "Entrez l'index de l'objet a supprimer : " << endl << "> ";
 				cin >> index;
 			}
-			if (ListeObjet2D.remove(index) > 0) {
-				cout << endl << "X | Erreur : index invalide" << endl;
-			}
-			else {
-				cout << endl << "O | Objet supprime !" << endl;
-			}
+			if (ListeObjet2D.remove(index) > 0) cout << endl << "X | Erreur : index invalide" << endl;
+			else cout << endl << "O | Objet supprime !" << endl;
+
 			ListeObjet2D.afficheInfo();
 		}
+
 		else if (command == "removeall") {
 			ListeObjet2D.removeAll();
 			ListeObjet2D.afficheInfo();
 		}
-		else if (command == "exit") {
-			cout << "Fin du programme" << endl;
-		}
-		else {
-			cout << "Commande inconnue, utilisez 'help'" << endl;
-		}
+
+		else if (command == "exit") cout << "Fin du programme" << endl;
+
+		else cout << "Commande inconnue, utilisez 'help'" << endl;
 	}
 	return 0;
 }
-

@@ -2,9 +2,7 @@
 
 Stockage::Stockage() : Head(nullptr), Tail(nullptr) {};
 
-Stockage::~Stockage() {
-	removeAll();
-};
+Stockage::~Stockage() { removeAll(); };
 
 void Stockage::append(Objet2D* objet) {
 	Node* newNode = new Node;
@@ -29,7 +27,7 @@ int Stockage::put(Objet2D* objet, int index) {
 	int i = 0;
 
 	while (i++ < index-1) {
-		if (temp == nullptr) { return 1; }
+		if (temp == nullptr) return 1;
 		temp = temp->suivant;
 	}
 
@@ -67,12 +65,8 @@ void Stockage::afficheListestats() {
 
 	while (temp != nullptr) {
 		cout << "Node " << index << " {" << temp->objet << "}";
-		if (temp->suivant != nullptr) {
-			cout << " -> ";
-		}
-		else {
-			cout << " -> NULL";
-		}
+		if (temp->suivant != nullptr) cout << " -> ";
+		else cout << " -> NULL";
 		temp = temp->suivant;
 		index++;
 	}
@@ -90,9 +84,7 @@ int Stockage::remove(int index) {
 	}
 	else {
 		while (i < index) {
-			if (temp == nullptr) {
-				return 1;
-			}
+			if (temp == nullptr) return 1;
 			temp2 = temp;
 			temp = temp->suivant;
 			i++;
