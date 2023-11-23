@@ -21,26 +21,30 @@ void Stockage::append(Objet2D* objet) {
 	}
 };
 
-void Stockage::put(Objet2D* objet, int index) {
+int Stockage::put(Objet2D* objet, int index) {
 	Node* temp = Head;
 	Node* newNode = new Node;
-	newNode->objet = objet;
+	newNode->objet = objet;	
 	newNode->suivant = nullptr;
 	int i = 0;
 
-	if (index == 0) {
-		newNode->suivant = Head;
-		Head = newNode;
-	}
-	else {
-		while (i < index) {
-			temp = temp->suivant;
-			i++;
+	while (i++ < index+1) {
+		temp = temp->suivant;
+		if (temp == nullptr) {
+			return 1;
 		}
-
-		newNode->suivant = temp->suivant;
-		temp->suivant = newNode;
 	}
+
+	newNode->suivant = temp->suivant;
+	temp->suivant = newNode;
+	return 0;
+};
+
+void Stockage::atHead(Objet2D* objet) {
+	Node* newNode = new Node;
+	newNode->objet = objet;
+	newNode->suivant = Head;
+	Head = newNode;
 };
 
 void Stockage::afficheInfo() {
@@ -61,7 +65,7 @@ void Stockage::afficheListestats() {
 	Node* temp = Head;
 	int index = 0;
 
-	cout << endl << "Adresses memoire utilisé par la liste : " << endl << "\t";
+	cout << endl << "Adresses memoire utilise par la liste : " << endl << "\t";
 
 	while (temp != nullptr) {
 		cout << "Node " << index << " {" << temp->objet << "}";
@@ -77,7 +81,7 @@ void Stockage::afficheListestats() {
 	cout << endl;
 }
 
-void Stockage::remove(int index) {
+int Stockage::remove(int index) {
 	Node* temp = Head;
 	Node* temp2 = Head;
 	int i = 0;
@@ -88,6 +92,9 @@ void Stockage::remove(int index) {
 	}
 	else {
 		while (i < index) {
+			if (temp == nullptr) {
+				return 1;
+			}
 			temp2 = temp;
 			temp = temp->suivant;
 			i++;
@@ -96,6 +103,7 @@ void Stockage::remove(int index) {
 		temp2->suivant = temp->suivant;
 		delete temp;
 	}
+	return 0;
 };
 
 void Stockage::removeAll() {

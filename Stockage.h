@@ -4,8 +4,7 @@
 
 class Stockage {
 private:
-	struct Node
-	{
+	struct Node {
 		Objet2D* objet;
 		Node* suivant;
 	};
@@ -18,9 +17,10 @@ public:
 	~Stockage();
 
 	void append(Objet2D* objet);
-	void put(Objet2D* objet, int index);
+	int put(Objet2D* objet, int index);
+	void atHead(Objet2D* objet);
 	void afficheInfo();
 	void afficheListestats();
-	void remove(int index);
+	int remove(int index);
 	void removeAll();
 };

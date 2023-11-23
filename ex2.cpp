@@ -8,6 +8,7 @@ using namespace std;
 
 int put(Stockage* ListeObjet2D) {
 	// put exemple
+	int error = 0;
 
 	int index = -1;
 	while (index < 0) {
@@ -27,7 +28,7 @@ int put(Stockage* ListeObjet2D) {
 			cin >> cote;
 		}
 		Carre* carre = new Carre(cote);
-		ListeObjet2D->put(carre, index);
+		error = ListeObjet2D->put(carre, index);
 	}
 	else if (type == 2) {
 		int longueur = 0;
@@ -41,10 +42,10 @@ int put(Stockage* ListeObjet2D) {
 			cin >> largeur;
 		}
 		Rectangle* rectangle = new Rectangle(longueur, largeur);
-		ListeObjet2D->put(rectangle, index);
+		error = ListeObjet2D->put(rectangle, index);
 	}
 
-	return 0;
+	return error;
 }	
 
 int append(Stockage* ListeObjet2D) {
@@ -103,14 +104,14 @@ int create_list(Stockage* ListeObjet2D) {
 
 void help() {
 	cout << "Commandes disponibles : " << endl;
-	cout << "\t-    help     :		affiche la liste des commandes disponibles" << endl;
-	cout << "\t-   create    :		cree une liste d'objets" << endl;
-	cout << "\t-   append    :		ajoute un objet a la liste" << endl;
-	cout << "\t-     put     :		ajoute un objet a la liste a un index donne" << endl;
-	cout << "\t-  listeinfo  :		affiche les informations de tous les objets de la liste" << endl;
-	cout << "\t-   remove    :		supprime un objet de la liste a un index donne" << endl;
-	cout << "\t-  removeall  :		supprime tous les objets de la liste" << endl;
-	cout << "\t-    exit     :		quitte le programme" << endl;
+	cout << "\t-    help     :	 afficher ce message" << endl;
+	cout << "\t-   create    :	 cree une liste d'objets" << endl;
+	cout << "\t-   append    :	 ajoute un objet a la liste" << endl;
+	cout << "\t-     put     :	 ajoute un objet a la liste a un index donne" << endl;
+	cout << "\t-  listeinfo  :	 affiche les informations de tous les objets de la liste" << endl;
+	cout << "\t-   remove    :	 supprime un objet de la liste a un index donne" << endl;
+	cout << "\t-  removeall  :	 supprime tous les objets de la liste" << endl;
+	cout << "\t-    exit     :	 quitte le programme" << endl;
 }
 
 
@@ -134,7 +135,12 @@ int main() {
 			append(&ListeObjet2D);
 		}
 		else if (command == "put") {
-			put(&ListeObjet2D);
+			if (put(&ListeObjet2D) > 0) {
+				cout << endl << "Erreur : index invalide" << endl;
+			}
+			else {
+				cout << endl << "Objet ajoute !" << endl;
+			}
 		}
 		else if (command == "listeinfo") {
 			ListeObjet2D.afficheListestats();
@@ -146,7 +152,12 @@ int main() {
 				cout << "Entrez l'index de l'objet a supprimer : " << endl << "> ";
 				cin >> index;
 			}
-			ListeObjet2D.remove(index);
+			if (ListeObjet2D.remove(index) > 0) {
+				cout << "Erreur : index invalide" << endl;
+			}
+			else {
+				cout << "Objet supprime !" << endl;
+			}
 			ListeObjet2D.afficheInfo();
 		}
 		else if (command == "removeall") {
