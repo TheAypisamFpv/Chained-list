@@ -136,10 +136,10 @@ int main() {
 		}
 		else if (command == "put") {
 			if (put(&ListeObjet2D) > 0) {
-				cout << endl << "Erreur : index invalide" << endl;
+				cout << endl << " X | Erreur : index invalide" << endl;
 			}
 			else {
-				cout << endl << "Objet ajoute !" << endl;
+				cout << endl << " O | Objet ajoute !" << endl;
 			}
 		}
 		else if (command == "listeinfo") {
@@ -153,10 +153,10 @@ int main() {
 				cin >> index;
 			}
 			if (ListeObjet2D.remove(index) > 0) {
-				cout << "Erreur : index invalide" << endl;
+				cout << endl << "X | Erreur : index invalide" << endl;
 			}
 			else {
-				cout << "Objet supprime !" << endl;
+				cout << endl << "O | Objet supprime !" << endl;
 			}
 			ListeObjet2D.afficheInfo();
 		}
