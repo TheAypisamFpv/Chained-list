@@ -16,9 +16,10 @@ public:
 	Stockage();
 	~Stockage();
 
+	int len();
 	void append(Objet2D* objet);
 	int put(Objet2D* objet, int index);
-	void atHead(Objet2D* objet);
+	void putAtHead(Objet2D* objet);
 	void afficheInfo();
 	void afficheListestats();
 	int remove(int index);

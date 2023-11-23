@@ -4,6 +4,18 @@ Stockage::Stockage() : Head(nullptr), Tail(nullptr) {};
 
 Stockage::~Stockage() { removeAll(); };
 
+int Stockage::len() {
+	Node* temp = Head;
+	int i = 1;
+
+	while (temp != nullptr) {
+		temp = temp->suivant;
+		i++;
+	}
+
+	return i;
+};
+
 void Stockage::append(Objet2D* objet) {
 	Node* newNode = new Node;
 	newNode->objet = objet;
@@ -24,7 +36,19 @@ int Stockage::put(Objet2D* objet, int index) {
 	Node* newNode = new Node;
 	newNode->objet = objet;	
 	newNode->suivant = nullptr;
-	int i = 0;
+	int i=0;
+	int lenght = len();
+
+	index = index < 0 ? lenght + index : index;
+
+	if (index < 0) {
+		putAtHead(objet);
+		return 0;
+	}
+	else if (index >= lenght) {
+		append(objet);
+		return 0;
+	}
 
 	while (i++ < index-1) {
 		if (temp == nullptr) return 1;
@@ -36,7 +60,7 @@ int Stockage::put(Objet2D* objet, int index) {
 	return 0;
 };
 
-void Stockage::atHead(Objet2D* objet) {
+void Stockage::putAtHead(Objet2D* objet) {
 	Node* newNode = new Node;
 	newNode->objet = objet;
 	newNode->suivant = Head;
