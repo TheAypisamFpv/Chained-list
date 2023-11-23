@@ -12,7 +12,7 @@ int put(Stockage* ListeObjet2D) {
 
 	int index = -1;
 	while (index < 0) {
-		cout << "Entrez l'index de l'objet a ajouter : " << endl << "> ";
+		cout << endl << "Entrez l'index de l'objet a ajouter : " << endl << "> ";
 		cin >> index;
 	}
 
@@ -105,13 +105,13 @@ int create_list(Stockage* ListeObjet2D) {
 void help() {
 	cout << "Commandes disponibles : " << endl;
 	cout << "\t-    help     :	 afficher ce message" << endl;
-	cout << "\t-   create    :	 cree une liste d'objets" << endl;
-	cout << "\t-   append    :	 ajoute un objet a la liste" << endl;
-	cout << "\t-     put     :	 ajoute un objet a la liste a un index donne" << endl;
+	cout << "\t-   create    :	 creer une liste d'objets" << endl;
+	cout << "\t-   append    :	 ajouter un objet a la liste" << endl;
+	cout << "\t-     put     :	 ajouter un objet a la liste a la suite d'un index donne" << endl;
 	cout << "\t-  listeinfo  :	 affiche les informations de tous les objets de la liste" << endl;
-	cout << "\t-   remove    :	 supprime un objet de la liste a un index donne" << endl;
-	cout << "\t-  removeall  :	 supprime tous les objets de la liste" << endl;
-	cout << "\t-    exit     :	 quitte le programme" << endl;
+	cout << "\t-   remove    :	 supprimer un objet de la liste a un index donne" << endl;
+	cout << "\t-  removeall  :	 supprimer tous les objets de la liste" << endl;
+	cout << "\t-    exit     :	 quitter le programme" << endl;
 }
 
 
@@ -119,7 +119,7 @@ int main() {
 	Stockage ListeObjet2D = Stockage();
 	help();
 
-	string command = "";
+	string command;
 	while (command != "exit") {
 		cout << endl << "Entrez votre commande : " << endl << "> ";
 		cin >> command;
@@ -135,6 +135,7 @@ int main() {
 			append(&ListeObjet2D);
 		}
 		else if (command == "put") {
+			ListeObjet2D.afficheInfo();
 			if (put(&ListeObjet2D) > 0) {
 				cout << endl << " X | Erreur : index invalide" << endl;
 			}
@@ -147,9 +148,10 @@ int main() {
 			ListeObjet2D.afficheInfo();
 		}
 		else if (command == "remove") {
+			ListeObjet2D.afficheInfo();
 			int index = -1;
 			while (index < 0) {
-				cout << "Entrez l'index de l'objet a supprimer : " << endl << "> ";
+				cout << endl << "Entrez l'index de l'objet a supprimer : " << endl << "> ";
 				cin >> index;
 			}
 			if (ListeObjet2D.remove(index) > 0) {

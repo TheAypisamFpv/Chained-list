@@ -28,7 +28,7 @@ int Stockage::put(Objet2D* objet, int index) {
 	newNode->suivant = nullptr;
 	int i = 0;
 
-	while (i++ < index+1) {
+	while (i++ < index-1) {
 		if (temp == nullptr) { return 1; }
 		temp = temp->suivant;
 	}
